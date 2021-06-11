@@ -8,7 +8,6 @@ import ultilise from '../ultilise/ultilise';
 import * as fs from "fs";
 import * as path from "path";
 import * as util from 'util';
-import { Gallary } from '../entities/gallary.entity';
 @Injectable()
 export class PhotoService {
     constructor(@InjectRepository(Photo) private photoRepository: Repository<Photo>,private readonly gallaryService: GallaryService){}
