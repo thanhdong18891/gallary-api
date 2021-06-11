@@ -1,8 +1,7 @@
-import { rejects } from 'assert';
 import Axios from 'axios';
 import * as fs from "fs";
 import * as path from 'path';
-import { uid, uidSync } from 'uid-ts';
+import { uid } from 'uid-ts';
 export class Ultilise {
     getRandomInt(low, high): number {
         return Math.floor(Math.random() * (high - low) + low)
