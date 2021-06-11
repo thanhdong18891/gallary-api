@@ -1,18 +1,27 @@
-version: "3.7"
+version: '3.7'
 services:
   localhost:
     image: postgres
+    container_name: localhost
     environment:
       POSTGRES_PASSWORD: abc@123
       POSTGRES_USER: postgres
       POSTGRES_DB: gallary_project
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - '5432:5432'
+    tty: true
+    stdin_open: true
+
   web:
     image: gallary-api-web-img
-    depends_on:
+    links:
       - localhost
+    environment:
+      SEQ_DB: gallary_project
+      SEQ_USER: postgres
+      SEQ_PW: abc@123
+      DATABASE_URL: postgres://postgres:abc@123@db:5432/gallary_project
     ports:
-      - "8080:8080"
+      - '8080:8080'
