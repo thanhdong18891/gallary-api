@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  localhost:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: abc@123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: gallary_project
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  web:
+    image: gallary-api-web-img
+    depends_on:
+      - localhost
+    ports:
+      - "8080:8080"

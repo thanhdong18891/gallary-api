@@ -15,6 +15,9 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+COPY --from=builder /liam/src/app/dist ./dist
+
+COPY ormconfig.docker.json ./ormconfig.json
 
 EXPOSE 8080
 CMD [ "node", "dist/main" ]
